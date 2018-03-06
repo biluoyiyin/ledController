@@ -8,6 +8,8 @@ from __future__ import division, print_function, absolute_import
 import argparse
 import sys
 import logging
+import requests
+import os
 
 __author__ = "xuanchen yao"
 __copyright__ = "xuanchen yao"
@@ -21,3 +23,5 @@ class ledController(object):
 	lights = None
 	def __init__(self, size):
 		self.lights = array([[False]*size for _ in range(size)])
+
+
