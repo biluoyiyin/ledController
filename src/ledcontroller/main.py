@@ -24,4 +24,12 @@ class ledController(object):
 	def __init__(self, size):
 		self.lights = array([[False]*size for _ in range(size)])
 
+	def parseFile(self, file):
+		if file.startswith('http'):
+			return "web"
+		else:
+   			if os.path.exists(file):
+   				return True
+   			else:
+   				return False
 
