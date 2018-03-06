@@ -15,4 +15,9 @@ __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
 
-
+from numpy import *
+class ledController(object):
+	"""docstring for ledController"""
+	lights = None
+	def __init__(self, size):
+		self.lights = array([[False]*size for _ in range(size)])
