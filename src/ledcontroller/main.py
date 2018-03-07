@@ -21,25 +21,30 @@ from numpy import *
 class ledController(object):
 	"""docstring for ledController"""
 	lights = None
-	def __init__(self, size):
-		self.lights = array([[False]*size for _ in range(size)])
+	def __init__(self, file):
+		self.file = file
+		self.lights = array([[False]*0 for _ in range(0)])
 
-	def parseFile(self, file):
+	def parseFile(self):
 		N, instructions = None, []
-		if file.startswith('http'):
-			content = requests.get(file).text
-			N = int('\n'.join(r.split('\n')[:1]))
-			instructions = ('\n'.join(r.split('\n')[1:]))
+		if self.file.startswith('http'):
+			content = requests.get(self.file).text
+			N = int('\n'.join(content.split('\n')[:1]))
+			instructions = ('\n'.join(content.split('\n')[1:])).split('\n')
 			return N, instructions
 		else:
-   			if os.path.exists(file):
-   				with open(file, 'r') as f:
+   			if os.path.exists(self.file):
+   				with open(self.file, 'r') as f:
    					N = int(f.readline())
    					for line in f.readlines():
    						instructions.append(line)
-   						print(line)
    				return N, instructions
    			else:
    				return "File doesn't exist."
+
+	def initializeLights(self, size):
+		self.lights = array([[False]*size for _ in range(size)])
+
+
 
    	
