@@ -25,11 +25,21 @@ class ledController(object):
 		self.lights = array([[False]*size for _ in range(size)])
 
 	def parseFile(self, file):
+		N, instructions = None, []
 		if file.startswith('http'):
-			return "web"
+			content = requests.get(file).text
+			N = int('\n'.join(r.split('\n')[:1]))
+			instructions = ('\n'.join(r.split('\n')[1:]))
+			return N, instructions
 		else:
    			if os.path.exists(file):
-   				return True
+   				with open(file, 'r') as f:
+   					N = int(f.readline())
+   					for line in f.readlines():
+   						instructions.append(line)
+   						print(line)
+   				return N, instructions
    			else:
-   				return False
+   				return "File doesn't exist."
 
+   	
