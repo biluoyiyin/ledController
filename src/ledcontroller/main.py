@@ -65,6 +65,11 @@ class ledController(object):
 						self.lights[x1:x2, y1:y2]=(self.lights[x1:x2, y1:y2]*-1+True).astype(bool)
 		return count_nonzero(self.lights)
 
+def main(file):
+	test_lights = ledController(file)
+	size, instrucions = test_lights.parseFile()
+	test_lights.initializeLights()
+	return(test_lights.command(instrucions))
 
 
 

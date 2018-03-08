@@ -7,7 +7,7 @@ __copyright__ = "xuanchen yao"
 __license__ = "mit"
 
 import pytest
-from ledController.main import ledController
+from ledController.main import ledController, main
 
  
 class Test_main(object):
@@ -34,8 +34,5 @@ class Test_main(object):
 
 	def test_readCommand(self):
 		file = "./data/test_data.txt"
-		array = ledController(file)
-		size, instrucions = array.parseFile()
-		array.initializeLights()
-		N = array.command(instrucions)
+		N = main(file)
 		assert N == 36
