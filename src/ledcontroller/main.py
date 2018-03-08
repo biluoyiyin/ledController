@@ -63,8 +63,8 @@ class ledController(object):
 			b = command.match(instructions[i])
 			if b:
 				x1, y1, x2, y2 = int(b.group(2)),int(b.group(3)),int(b.group(4)),int(b.group(5))
-				x1, x2 = max(min(x1, x2), 0), max(max(x1, x2), self.size)
-				y1, y2 = max(min(y1, y2), 0), max(max(y1, y2), self.size)
+				x1, x2 = max(min(x1, x2), 0), min(max(x1, x2), self.size)
+				y1, y2 = max(min(y1, y2), 0), min(max(y1, y2), self.size)
 				if x2 < self.size and y2 < self.size :
 					if b.group(1) == "turn on":
 						self.lights[x1:x2+1, y1:y2+1]=True
