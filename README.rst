@@ -2,14 +2,15 @@
 ledController
 =============
 
-
-Add a short description here!
+It is for assignment3
+It will return the number of the rest of bright lights.
 
 
 Description
 ===========
 
-A longer description of your project goes here...
+Using "solve_led --input http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+   or "solve_led --input local_file_address"
 
 
 Note
