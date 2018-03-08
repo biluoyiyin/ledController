@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 It is main mehod
@@ -11,12 +11,19 @@ import logging
 import requests
 import os
 import re
+import argparse
 
 __author__ = "xuanchen yao"
 __copyright__ = "xuanchen yao"
 __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
+
+parser = argparse.ArgumentParser(description='Add command --input')
+parser.add_argument('--input', help='The program will count the rest of bright lights after tests. Using command "solve_led --input fileAddress" ')
+args = parser.parse_args()
+
+
 
 from numpy import *
 class ledController(object):
@@ -30,10 +37,13 @@ class ledController(object):
 	def parseFile(self):
 		instructions = []
 		if self.file.startswith('http'):
-			content = requests.get(self.file).text
-			self.size = int('\n'.join(content.split('\n')[:1]))
-			instructions = ('\n'.join(content.split('\n')[1:])).split('\n')
-			return self.size, instructions
+			try:
+				content = requests.get(self.file).text
+				self.size = int('\n'.join(content.split('\n')[:1]))
+				instructions = ('\n'.join(content.split('\n')[1:])).split('\n')
+				return self.size, instructions
+			except urllib.error.HTTPError:
+				print("The URL is error.")
 		else:
    			if os.path.exists(self.file):
    				with open(self.file, 'r') as f:
@@ -63,17 +73,19 @@ class ledController(object):
 					else:
 						#map(switch,self.lights[x1:x2][y1:y2])
 						self.lights[x1:x2, y1:y2]=(self.lights[x1:x2, y1:y2]*-1+True).astype(bool)
+		print("The left number of the rest of bright lights is",count_nonzero(self.lights))
 		return count_nonzero(self.lights)
 
-def main(file):
+def main():
+	file = args.input
 	test_lights = ledController(file)
 	size, instrucions = test_lights.parseFile()
 	test_lights.initializeLights()
 	return(test_lights.command(instrucions))
 
 
-
-
+if __name__ == '__main__':
+	main()
 
 
    	

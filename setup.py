@@ -14,6 +14,7 @@ from setuptools import setup
 # Add here console scripts and other entry points in ini-style format
 entry_points = """
 [console_scripts]
+solve_led = ledController.main:main
 # script_name = ledcontroller.module:function
 # For example:
 # fibonacci = ledcontroller.skeleton:run
