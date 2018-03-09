@@ -34,5 +34,8 @@ class Test_main(object):
 
 	def test_readCommand(self):
 		file = "./data/test_data.txt"
-		N = main(file)
-		assert N == 36
+		test_lights = ledController(file)
+		size, instrucions = test_lights.parseFile()
+		test_lights.initializeLights()
+		assert (test_lights.command(instrucions)) == 36
+		
