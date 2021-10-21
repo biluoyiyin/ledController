@@ -10,7 +10,7 @@ argh==0.26.2
 arrow==0.12.1
 async-timeout==2.0.0
 attrs==17.4.0
-Babel==2.5.3
+Babel==2.9.1
 binaryornot==0.4.4
 bumpversion==0.5.3
 certifi==2017.11.5
