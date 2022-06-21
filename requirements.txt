@@ -34,7 +34,7 @@ MarkupSafe==0.18
 mccabe==0.6.1
 mock==1.0.1
 multidict==4.1.0
-numpy==1.14.0
+numpy==1.22.0
 packaging==16.8
 pathtools==0.1.2
 Paver==1.2.1
